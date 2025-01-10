@@ -20,7 +20,7 @@ export default async function handler(req: SignupRequest, res: NextApiResponse) 
   const { email, password, role, agentName } = req.body;
 
   // Validate input
-  if (!email || ! || !agentName) {
+  if (!email || !password || !agentName) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
