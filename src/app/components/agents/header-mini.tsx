@@ -1,0 +1,76 @@
+import React, { useState } from "react";
+import { Form, Button, Container } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const AgentHeaderMini = () => {
+  return (
+    <>
+
+      <div className="container-fluid p-0">
+        <div className="container-fluid page-header">
+          <div className="container">
+            <div className="d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '400px' }}>
+              <h3 className="display-4 text-white text-uppercase">Trips</h3>
+              <div className="d-inline-flex text-white">
+                <p className="m-0 text-uppercase"><a className="text-white" href="">Home</a></p>
+                <i className="fa fa-angle-double-right pt-1 px-3"></i>
+                <p className="m-0 text-uppercase">Trips</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container-fluid booking mt-5 pb-5">
+        <div className="container pb-5 clearfix">
+          <div className="bg-light shadow p-4">
+          <div className="row align-items-center" style={{ minHeight: '60px' }}>
+            <div className="col-md-10">
+              <div className="row">
+                <div className="col-md-3">
+                  <div className="mb-3 mb-md-0">
+                    <select className="custom-select px-4" style={{ height: '47px' }}>
+                      <option selected>Destination</option>
+                      <option value="1">Destination 1</option>
+                      <option value="2">Destination 1</option>
+                      <option value="3">Destination 1</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="mb-3 mb-md-0">
+                    <div className="date" id="date1" data-target-input="nearest">
+                      <input type="text" className="form-control p-4 datetimepicker-input" placeholder="Depart Date" data-target="#date1" data-toggle="datetimepicker" />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="mb-3 mb-md-0">
+                    <div className="date" id="date2" data-target-input="nearest">
+                      <input type="text" className="form-control p-4 datetimepicker-input" placeholder="Return Date" data-target="#date2" data-toggle="datetimepicker" />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="mb-3 mb-md-0">
+                    <select className="custom-select px-4" style={{ height: '47px' }}>
+                      <option selected>Duration</option>
+                      <option value="1">Duration 1</option>
+                      <option value="2">Duration 1</option>
+                      <option value="3">Duration 1</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-2">
+              <button className="btn btn-primary btn-block" type="submit" style={{ height: '47px', marginTop: '-2px' }}>Submit</button>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default AgentHeaderMini;

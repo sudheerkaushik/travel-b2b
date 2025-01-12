@@ -1,6 +1,18 @@
-import React, { useState } from "react";
+import { signup } from "@/app/components/actions/auth";
+import React, { useActionState, useState } from "react";
+
+
+interface SignupState {
+  errors?: {
+    email?: string;
+    password?: string[];
+    name?: string;
+  };
+}
 
 const Signup = () => {
+  const [state, action, pending] = useActionState<SignupState>(signup, undefined);
+  // const [state, action, pending] = useActionState(signup, undefined)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [agentName, setName] = useState(""); // Default role can be "agent"
@@ -45,6 +57,7 @@ const Signup = () => {
             required
             className="w-full p-2 border rounded mt-1"
           />
+          {state?.errors?.email && <p>{state.errors.email}</p>}
         </div>
 
         <div className="mb-4">
@@ -59,6 +72,16 @@ const Signup = () => {
             required
             className="w-full p-2 border rounded mt-1"
           />
+           {state?.errors?.password && (
+        <div>
+          <p>Password must:</p>
+          <ul>
+            {state.errors.password.map((error) => (
+              <li key={error}>- {error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
         </div>
 
         <div className="mb-4">
@@ -73,6 +96,7 @@ const Signup = () => {
             required
             className="w-full p-2 border rounded mt-1"
           />
+           {state?.errors?.name && <p>{state.errors.name}</p>}
         </div>
 
         <button

@@ -3,21 +3,23 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(cuid())
   email     String  @unique
   password  String
   role      String?  // "agent" or "admin"
   agentName String?
+   createdAt     DateTime?  @default(now())
+  updatedAt     DateTime?  @updatedAt
 }
 
 model Trip {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  agentId   String   @db.ObjectId
+    id            String    @id @default(cuid())
+  
   destination String
   price      Float
   margin     Float
