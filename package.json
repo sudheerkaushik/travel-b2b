@@ -13,6 +13,7 @@
     "schema": "prisma/schema.prisma"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.735.0",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
@@ -24,12 +25,16 @@
     "bootstrap": "^5.3.3",
     "crypto-js": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "next": "15.1.4",
     "next-auth": "^4.24.11",
+    "nodejs-s3-typescript": "^3.1.5",
     "prisma": "^6.2.1",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.7",
     "react-dom": "^19.0.0",
+    "react-images-uploading": "^3.1.7",
+    "uuid": "^11.0.5",
     "zod": "^3.24.1"
   },
   "devDependencies": {

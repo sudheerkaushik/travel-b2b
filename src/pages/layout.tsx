@@ -14,7 +14,7 @@ export default function RootLayout({
   const router = useRouter();
 
   // Determine role from the URL path
-  const isAgentRoute = router.pathname.startsWith("/agents");
+  const isAgentRoute = router.pathname.startsWith("/");
   const isAdminRoute = router.pathname.startsWith("/admin");
 
   if (isAgentRoute) {

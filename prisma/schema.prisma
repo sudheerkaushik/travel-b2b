@@ -18,10 +18,15 @@ model User {
 }
 
 model Trip {
-    id            String    @id @default(cuid())
-  
+  id          Int      @id @default(autoincrement())
   destination String
-  price      Float
-  margin     Float
-  date       DateTime
+  price       Float
+  margin      Float
+  date        DateTime
+  transport   String
+  duration    Int
+  description String
+  isAvailable Boolean
+  imageUrl    String   // New field for the image URL
 }
+

@@ -1,50 +1,31 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import prisma from "../../../lib/prisma";
+import prisma from "../../../lib/prisma"; // Adjust path to prisma instance
 
-/**
- * API to authenticate a user and return a JWT token.
- */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
+  if (req.method === "POST") {
+    const { email, password } = req.body;
 
-  const { email, password } = req.body;
-
-  if (!email || !password) {
-    return res.status(400).json({ message: "Email and password are required." });
-  }
-
-  try {
-    // Find the user
-    const user = await prisma.user.findUnique({ where: { email } });
-
-    if (!user) {
-      return res.status(401).json({ message: "Invalid email or password." });
+    const agent = await prisma.user.findUnique({ where: { email } });
+    if (!agent) {
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Compare passwords
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid email or password." });
+    const isPasswordCorrect = await bcrypt.compare(password, agent.password);
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Generate a JWT token
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
-      process.env.JWT_SECRET || "defaultsecret",
-      { expiresIn: "1h" }
+      { id: agent.id, email: agent.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" } // Token expires in 24 hours
     );
 
-    res.status(200).json({
-      message: "Login successful",
-      token,
-      user: { id: user.id, email: user.email, role: user.role },
-    });
-  } catch (error) {
-    console.error("Error logging in user:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.setHeader("Set-Cookie", `token=${token}; Path=/; HttpOnly; Max-Age=86400;`);
+    return res.status(200).json({ message: "Login successful", token,name: agent.agentName });
+  } else {
+    return res.status(405).json({ message: "Method not allowed" });
   }
 }
