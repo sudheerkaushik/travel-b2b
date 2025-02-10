@@ -38,4 +38,4 @@ const LoginPage = () => {
   return <AgentLoginForm onSubmit={handleLogin} />;
 };
 
-export { SignupPage, LoginPage };
+export default SignupPage ;

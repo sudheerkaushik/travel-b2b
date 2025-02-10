@@ -1,3 +1,4 @@
+import Adminlinks from "@/app/components/admin/links";
 import Link from "next/link";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -11,6 +12,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link href="/admin/agent-list">Agent List</Link>
         </nav>
       </header>
+      <Adminlinks/>
       <main className="content">{children}</main>
       <footer className="footer">
         <p>Admin Portal &copy; 2025</p>

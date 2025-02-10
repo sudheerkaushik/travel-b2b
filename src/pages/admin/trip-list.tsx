@@ -1,93 +1,74 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, Pagination } from "react-bootstrap";
-import TripItem from "./../../app/components/common/trip-item";
-
-// Mock Data for trips
-const tripsData = Array.from({ length: 50 }, (_, i) => ({
-  id: i + 1,
-  location: "Thailand",
-  duration: "3 days",
-  persons: "2",
-  title: `Discover amazing places of the world #${i + 1}`,
-  price: `$${350 + i * 10}`,
-  rating: "4.5",
-  reviews: 250,
-  image: "../img/package-1.jpg",
-}));
+import React, { useState, useEffect } from "react";
+import TripItem from "../../app/components/common/trip-item";
+import FilterComponent from "@/app/components/common/filter";
 
 const TripList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filteredTrips, setFilteredTrips] = useState(tripsData);
+  const [trips, setTrips] = useState([]);
 
-  const tripsPerPage = 10;
-  const totalPages = Math.ceil(filteredTrips.length / tripsPerPage);
+  useEffect(() => {
+    const fetchTrips = async () => {
+      try {
+        const response = await fetch("/api/trips/trips"); // Fetch from API
+        const data = await response.json();
+        setTrips(data);
+        console.log("Trips fetched:", data);
+      } catch (error) {
+        console.error("Error fetching trips:", error);
+      }
+    };
 
-  const indexOfLastTrip = currentPage * tripsPerPage;
-  const indexOfFirstTrip = indexOfLastTrip - tripsPerPage;
-  const currentTrips = filteredTrips.slice(indexOfFirstTrip, indexOfLastTrip);
+    fetchTrips();
+  }, []);
 
-  const handleFilter = (e) => {
-    e.preventDefault();
-    // Dummy filter logic (extend this as needed)
-    const minPrice = parseInt(e.target.minPrice.value) || 0;
-    const maxPrice = parseInt(e.target.maxPrice.value) || Infinity;
-
-    const updatedTrips = tripsData.filter((trip) => {
-      const price = parseInt(trip.price.slice(1)); // Remove "$" and convert to number
-      return price >= minPrice && price <= maxPrice;
-    });
-
-    setFilteredTrips(updatedTrips);
-    setCurrentPage(1); // Reset to page 1 after filtering
-  };
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/trips/trips?id=${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setTrips(trips.filter((trip) => trip.id !== id)); // Remove deleted trip from state
+        console.log("Trip deleted successfully");
+      } else {
+        console.error("Error deleting trip");
+      }
+    } catch (error) {
+      console.error("Error deleting trip:", error);
+    }
   };
 
   return (
-    <Container>
-      <Row>
-        {/* Filters Section */}
-        <Col md={3}>
-          <Form onSubmit={handleFilter} className="mb-4">
-            <h4>Filters</h4>
-            <Form.Group>
-              <Form.Label>Min Price</Form.Label>
-              <Form.Control type="number" name="minPrice" placeholder="e.g. 100" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Max Price</Form.Label>
-              <Form.Control type="number" name="maxPrice" placeholder="e.g. 1000" />
-            </Form.Group>
-            <Button variant="primary" type="submit" className="w-100">
-              Apply Filters
-            </Button>
-          </Form>
-        </Col>
+    <div className="container-fluid py-3">
+      <div className="row ms-5">
+        <div className="col-12 text-center mb-3 pb-3">
+          <h6 className="text-primary text-uppercase" style={{ letterSpacing: '5px' }}>Packages</h6>
+          <h1>Perfect Tour Packages</h1>
+        </div>
+        <div className="col-12 col-md-3 mb-4 ps-5">
+          <FilterComponent />
+        </div>
+        <div className="col-12 col-md-9 ps-5">
+          <div className="row">
+            {trips.length > 0 ? (
+              trips.map((trip) => (
+                <div key={trip.id} className="col-12 col-md-8 mb-4">
+                  <TripItem trip={trip} >
 
-        {/* Trips List Section */}
-        <Col md={9}>
-          <h1>Trips</h1>
-          {currentTrips.map((trip) => (
-            <TripItem key={trip.id} {...trip} />
-          ))}
-
-          {/* Pagination */}
-          <Pagination className="mt-4 justify-content-center">
-            {[...Array(totalPages).keys()].map((number) => (
-              <Pagination.Item
-                key={number}
-                active={number + 1 === currentPage}
-                onClick={() => handlePageChange(number + 1)}
-              >
-                {number + 1}
-              </Pagination.Item>
-            ))}
-          </Pagination>
-        </Col>
-      </Row>
-    </Container>
+                    </TripItem>
+                  <button
+                    onClick={() => handleDelete(trip.id)}
+                    className="btn btn-danger mt-2"
+                    >
+                    Delete Trip
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p className="text-center">No trips available</p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

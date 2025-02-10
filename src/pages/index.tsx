@@ -13,7 +13,7 @@ export default function SearchTrip() {
             <TopDestinations />
 
             <TopServices />
-            <TopPackages />
+            {/* <TopPackages /> */}
             <SignUpPromo />
 
             <div className="container-fluid py-5">

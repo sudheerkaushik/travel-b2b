@@ -128,9 +128,9 @@ const AgentNavigation = () => {
                                 ) : (
                                     <a
                                         href="/agents/login"
-                                        className="nav-item nav-link bg-white text-blue-500 rounded hover:bg-gray-100"
+                                        className="nav-item nav-link  text-blue-500 rounded hover:bg-gray-100"
                                     >
-                                        Login
+                                        Agent Login
                                     </a>
                                 )}
                                 {/* <div className="nav-item dropdown">

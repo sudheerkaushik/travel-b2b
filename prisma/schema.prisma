@@ -29,4 +29,16 @@ model Trip {
   isAvailable Boolean
   imageUrl    String   // New field for the image URL
 }
+model Enquiry {
+  id          Int      @id @default(autoincrement())
+  destination String
+  price       Float
+  margin      Float
+  contactnum  String
+  email       String
+  date        DateTime
+  transport   String
+  duration    Int
+  imageUrl    String  
+}
 
