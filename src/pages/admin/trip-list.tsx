@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TripItem from "../../app/components/common/trip-item";
 import FilterComponent from "@/app/components/common/filter";
+import Adminlinks from "@/app/components/admin/links";
 
 const TripList = () => {
   const [trips, setTrips] = useState([]);
@@ -44,20 +45,21 @@ const TripList = () => {
           <h1>Perfect Tour Packages</h1>
         </div>
         <div className="col-12 col-md-3 mb-4 ps-5">
-          <FilterComponent />
+          {/* <FilterComponent /> */}
+          <Adminlinks/>
         </div>
         <div className="col-12 col-md-9 ps-5">
           <div className="row">
             {trips.length > 0 ? (
               trips.map((trip) => (
-                <div key={trip.id} className="col-12 col-md-8 mb-4">
+                <div key={trip.id} className="col-12 col-md-10 mb-4">
                   <TripItem trip={trip} >
 
-                    </TripItem>
+                  </TripItem>
                   <button
                     onClick={() => handleDelete(trip.id)}
                     className="btn btn-danger mt-2"
-                    >
+                  >
                     Delete Trip
                   </button>
                 </div>

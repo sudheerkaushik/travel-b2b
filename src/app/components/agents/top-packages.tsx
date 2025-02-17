@@ -27,14 +27,14 @@ const TopPackages = () => {
           <h6 className="text-primary text-uppercase" style={{ letterSpacing: '5px' }}>Packages</h6>
           <h1>Perfect Tour Packages</h1>
         </div>
-        <div className="col-12 col-md-3 mb-4 ps-5">
+        <div className="col-12 col-md-3 mb-4 ps-5 ">
           <FilterComponent />
         </div>
         <div className="col-12 col-md-9 ps-5">
           <div className="row">
             {trips.length > 0 ? (
               trips.map((trip) => (
-                <div key={trip.id} className="col-12 col-md-8 mb-4">
+                <div key={trip.id} className="col-12 col-md-11 mb-4">
                   <TripItem trip={trip} />
                 </div>
               ))

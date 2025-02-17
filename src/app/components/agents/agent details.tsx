@@ -1,41 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const AgentCard = ({ agent }) => {
+const AgentCard = () => {
+  const [agents, setAgents] = useState([]);
+
+  useEffect(() => {
+    const fetchAgentDetails = async () => {
+      try {
+        const response = await fetch("/api/agents/me"); // Fetch from API
+        const data = await response.json();
+        if (data) {
+          setAgents(data);
+          console.log("Agents fetched:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching agents:", error);
+      }
+    };
+
+    fetchAgentDetails();
+  }, []);
+
   return (
-    <section className="w-100 px-4 py-5" style={{ borderRadius: ".5rem .5rem 0 0" }}>
-      <div className="row d-flex justify-content-center">
-        <div className="col col-md-9 col-lg-7 col-xl-6">
-          <div className="card" style={{ borderRadius: 15 }}>
-            <div className="card-body p-4">
-              <div className="d-flex">
-                <div className="flex-shrink-0">
-                  <img
-                    src={agent.profileImage || "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"}
-                    alt="Agent Profile"
-                    className="img-fluid"
-                    style={{ width: 180, borderRadius: 10 }}
-                  />
-                </div>
-                <div className="flex-grow-1 ms-3">
-                  <h5 className="mb-1">{agent.agentName}</h5>
-                  <p className="mb-2 pb-1">{agent.role || "Agent"}</p>
-                  <div className="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
-                    <div>
-                      <p className="small text-muted mb-1">Email</p>
-                      <p className="mb-0">{agent.email}</p>
-                    </div>
-                    <div className="px-3">
-                      <p className="small text-muted mb-1">Phone</p>
-                      <p className="mb-0">{agent.phone || "N/A"}</p>
+    <section className="container py-5">
+      {agents.length > 0 ? (
+        agents.map((agent) => (
+          <div className="row justify-content-center mb-4" key={agent.id}>
+            <div className="col-8">
+              <div className="card shadow-lg" style={{ borderRadius: "1rem" }}>
+                <div className="card-body">
+                  <div className="d-flex">
+                    <div className="flex-grow-1 ms-3">
+                      <h5 className="card-title text-primary mb-2">{agent.agentName}</h5>
+                      <p className="text-muted mb-3">{agent.role}</p>
+
+                      <div className="d-flex flex-column bg-light rounded-3 p-3 mb-3">
+                        <p className="small text-muted mb-1">Email</p>
+                        <p className="mb-0 text-truncate">{agent.email}</p>
+                      </div>
+
+                      {/* Add more agent details here */}
                     </div>
                   </div>
-                  {/* Add more agent details here */}
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
     </section>
   );
 };

@@ -30,15 +30,14 @@ model Trip {
   imageUrl    String   // New field for the image URL
 }
 model Enquiry {
-  id          Int      @id @default(autoincrement())
-  destination String
-  price       Float
-  margin      Float
-  contactnum  String
-  email       String
-  date        DateTime
-  transport   String
-  duration    Int
-  imageUrl    String  
+  id              Int      @id @default(autoincrement())
+  destination     String
+  price           String
+  margin          String
+  date            DateTime
+  transport       String
+  duration        String
+  agentName       String
+  contactNumber   String
+  email           String
 }
-
