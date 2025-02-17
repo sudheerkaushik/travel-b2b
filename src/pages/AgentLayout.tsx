@@ -9,7 +9,14 @@ export default function AgentLayout({ children }: { children: React.ReactNode })
       <AgentNavigation />
         <main className="content">{children}</main>
         <footer className="footer">
-          <p>Agent Portal &copy; 2025</p>
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <p>Agent Portal &copy; 2025</p>
+
+              </div>
+            </div>
+          </div>
         </footer>
       </section>
     </>
