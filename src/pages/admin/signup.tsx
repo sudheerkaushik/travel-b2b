@@ -14,9 +14,6 @@
 // }
 import prisma from '../../lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
-// import bcrypt from 'bcrypt';
-
-// import bcrypt from 'bcrypt';
 
 interface UserRequest extends NextApiRequest {
   body: {
@@ -27,13 +24,26 @@ interface UserRequest extends NextApiRequest {
 }
 
 export default async function handler(req: UserRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: "Method Not Allowed" });
+  }
+  
+  if (!req.body) {
+    return res.status(400).json({ message: "No request body provided" });
+  }
+  
   const { email, password, role } = req.body;
 
+  // Optionally hash the password
   // const hashedPassword = await bcrypt.hash(password, 10);
 
-  const user = await prisma.user.create({
-    data: { email, password, role },
-  });
-
-  res.json(user);
+  try {
+    const user = await prisma.user.create({
+      data: { email, password, role },
+    });
+    res.status(201).json(user);
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).json({ message: "Error creating user", error });
+  }
 }
