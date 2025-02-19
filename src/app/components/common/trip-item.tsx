@@ -31,7 +31,9 @@ const TripItem = ({ trip }) => {
         body: JSON.stringify(formData),
       });
 
-      console.log("Response Status:", enquiryResponse.status); // Debug response status
+      const data = await enquiryResponse.json();
+
+      console.log("Response Status:", data); // Debug response status
 
       if (enquiryResponse.status === 201) {
         alert("Enquiry submitted successfully!");
@@ -43,7 +45,6 @@ const TripItem = ({ trip }) => {
       }
     } catch (error) {
       console.error("Error submitting enquiry:", error);
-      alert("Error occurred. Try again.");
     }
   };
 

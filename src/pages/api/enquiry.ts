@@ -46,15 +46,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const newEnquiry = await prisma.enquiry.create({
           data: {
             destination,
-            price: parseFloat(price),
-            margin: parseFloat(margin),
+            price,
+            margin,
             date: new Date(date),
             transport,
-            duration: parseInt(duration, 10),
+            duration,
             agentName,
             contactNumber,
-            email,
-            specialRequests: null, // Optional: Can be added based on form data
+            email
           },
         });
 
