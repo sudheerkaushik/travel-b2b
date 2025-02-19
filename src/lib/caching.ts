@@ -14,7 +14,7 @@ async function main() {
     where: {
       email: { contains: "alice" }
     },
-    include: { posts: true },
+    select: { id: true, email: true }, // Adjust the fields to valid ones in the User model
     cacheStrategy: {
       swr: 30, // 30 seconds
       ttl: 60  // 60 seconds

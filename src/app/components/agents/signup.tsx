@@ -305,7 +305,10 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 
-const AgentSignupForm = () => {
+interface AgentSignupFormProps {
+  onSubmit: (data: { email: string; password: string; agentName: string }) => Promise<void>;
+}
+const AgentSignupForm: React.FC<AgentSignupFormProps> = ({ }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");

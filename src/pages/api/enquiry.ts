@@ -60,7 +60,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(201).json({ message: "Enquiry submitted successfully", enquiry: newEnquiry });
       } catch (error) {
         console.error("Error while creating enquiry:", error);
-        res.status(500).json({ message: "Failed to submit enquiry", error: error.message || "Unknown error" });
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
+        res.status(500).json({ message: "Failed to submit enquiry", error: errorMessage });
       }
       break;
 

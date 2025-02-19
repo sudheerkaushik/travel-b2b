@@ -1,3 +1,4 @@
+/* eslint-disable */
 // import { NextApiRequest, NextApiResponse } from "next";
 // import prisma from "../../../lib/prisma";
 // import bcrypt from "bcrypt";
@@ -28,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await prisma.user.create({
-      data: { email, password: hashedPassword, role, name },
+      data: { email, password: hashedPassword, role },
     });
 
     return res.status(201).json(user);

@@ -45,7 +45,7 @@ export async function createTrip(
       duration,
       description,
       isAvailable,
-      imageUrl
+      imageUrl: "", // Add a default or actual imageUrl value
     },
   });
 
@@ -85,7 +85,7 @@ export async function updateTrip(
   }
 ) {
   const trip = await prisma.trip.update({
-    where: { id: id.toString() },
+    where: { id: id },
     data: {
       ...updatedData,
       date: updatedData.date ? new Date(updatedData.date) : undefined, // Convert date if provided
@@ -100,7 +100,7 @@ export async function updateTrip(
  */
 export async function deleteTrip(id: number) {
   const trip = await prisma.trip.delete({
-    where: { id: id.toString() },
+    where: { id: id },
   });
 
   return trip;

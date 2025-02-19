@@ -1,9 +1,23 @@
+
 import React, { useState, useEffect } from "react";
 import TripItem from "../../app/components/common/trip-item";
 import Adminlinks from "@/app/components/admin/links";
 
 const TripList = () => {
-  const [trips, setTrips] = useState([]);
+  interface Trip {
+    id: string | number;
+    destination: string;
+    price: number;
+    margin: number;
+    date: string;
+    duration: number;
+    description: string;
+    imageUrl: string;
+    transport: string;
+    // Add other properties of Trip here
+  }
+
+  const [trips, setTrips] = useState<Trip[]>([]);
 
   useEffect(() => {
     const fetchTrips = async () => {
@@ -20,7 +34,7 @@ const TripList = () => {
     fetchTrips();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string | number) => {
     try {
       const response = await fetch(`/api/trips/trips?id=${id}`, {
         method: "DELETE",

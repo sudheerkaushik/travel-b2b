@@ -2,7 +2,19 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-const TripItem = ({ trip }) => {
+interface Trip {
+  destination: string;
+  price: number;
+  margin: number;
+  date: string;
+  transport: string;
+  duration: number;
+  imageUrl: string;
+  description: string;
+}
+
+const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
+  
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     destination: trip.destination || "",
@@ -16,12 +28,12 @@ const TripItem = ({ trip }) => {
     email: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Submitting Form Data:", formData); // Debugging: Log form data before sending
     
@@ -107,7 +119,7 @@ const TripItem = ({ trip }) => {
                 <Form.Control
                   type={field.type}
                   name={field.name}
-                  value={formData[field.name]}
+                  value={formData[field.name as keyof typeof formData]}
                   readOnly={field.readOnly}
                 />
               </Form.Group>

@@ -3,7 +3,19 @@ import TripItem from "../common/trip-item";
 import FilterComponent from "../common/filter";
 
 const TopPackages = () => {
-  const [trips, setTrips] = useState([]);
+  interface Trip {
+    id: string;
+    destination: string;
+    price: number;
+    margin: number;
+    date: string;
+    transport: string;
+    duration: number;
+    description: string;
+    imageUrl: string;
+  }
+  
+  const [trips, setTrips] = useState<Trip[]>([]);
 
   useEffect(() => {
     const fetchTrips = async () => {

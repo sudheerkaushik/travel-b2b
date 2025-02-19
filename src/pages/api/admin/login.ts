@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    return res.status(200).json({ message: "Login successful", name: user.name });
+    return res.status(200).json({ message: "Login successful", name: user.agentName });
   } else {
     res.status(405).end(); // Method Not Allowed
   }

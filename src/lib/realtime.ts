@@ -1,5 +1,5 @@
+import { withPulse } from '@prisma/extension-pulse/workerd';
 import { PrismaClient } from '@prisma/client';
-import { withPulse } from '@prisma/extension-pulse';
 import dotenv from "dotenv"
 
 process.on('SIGINT', () => {
