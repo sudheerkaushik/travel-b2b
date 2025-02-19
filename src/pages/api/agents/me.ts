@@ -59,7 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET) as { id: string; email: string };
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET) as { id: string; email: string };
 
     // Fetch agents with role 'agent'
     const agents = await prisma.user.findMany({

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import TripItem from "../../app/components/common/trip-item";
-import FilterComponent from "@/app/components/common/filter";
 import Adminlinks from "@/app/components/admin/links";
 
 const TripList = () => {

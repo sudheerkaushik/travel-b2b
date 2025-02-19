@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
@@ -52,7 +53,7 @@ const TripItem = ({ trip }) => {
     <>
       {trip && (
         <div className="package-item bg-white mb-2 d-flex shadow rounded-3">
-          <img className="img-fluid w-25 trip-image rounded-start-3" src={trip.imageUrl} alt="" />
+          <Image className="img-fluid w-25 trip-image rounded-start-3" src={trip.imageUrl} alt="" />
           <div className="p-4 w-75">
             <div className="d-flex justify-content-between mb-3">
               <small className="m-0">

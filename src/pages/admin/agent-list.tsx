@@ -1,5 +1,5 @@
 import AgentCard from "@/app/components/agents/agent details";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const AgentList = () => {
 

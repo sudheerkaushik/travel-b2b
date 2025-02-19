@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../lib/prisma";
-import jwt from "jsonwebtoken";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
@@ -12,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // }
 
   // const token = authorization.replace("Bearer ", "");
-  let decoded;
+  // let decoded;
 
   // try {
   //   decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string; role: string };
