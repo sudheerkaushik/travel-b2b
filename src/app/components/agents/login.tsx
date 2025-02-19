@@ -109,11 +109,12 @@
 //   );
 // };
 
-// export default AgentLoginForm;
-import React, { useState, useEffect } from "react";
-import { setCookie, deleteCookie, getCookie } from "../../lib/cookie";
+// export default AgentLoginForm;import React, { useState, useEffect } from "react";
+import { deleteCookie, getCookie } from "../../lib/cookie";
 import { useUser } from "@/app/context/UserContext";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import Image from "next/image";
 
 const AgentLoginForm = () => {
   const [email, setEmail] = useState("");
@@ -121,7 +122,7 @@ const AgentLoginForm = () => {
   const { dispatch } = useUser();
   const router = useRouter();
 
-  const handleLogin = async (e: { preventDefault: () => void; }) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const response = await fetch("/api/agents/login", {
       method: "POST",
@@ -131,6 +132,7 @@ const AgentLoginForm = () => {
     const data = await response.json();
 
     if (response.ok) {
+      // Store token in document.cookie
       document.cookie = `token=${data.token}; Path=/;`;
       dispatch({ type: "LOGIN", payload: { name: data.name, email: data.email } });
       router.push("/");
@@ -180,7 +182,6 @@ const AgentLoginForm = () => {
               />
             </div>
             <input type="submit" value="Login" className="btn solid" />
-
           </form>
         </div>
       </div>
@@ -191,22 +192,27 @@ const AgentLoginForm = () => {
             <p>
               Sign up to make your account and start using our platform with full access.
             </p>
-            <a className="link-light text-decoration-none" href="/agents/signup">
+            <Link href="/agents/signup" className="link-light text-decoration-none">
               <button className="btn transparent" id="sign-up-btn">
                 Sign up
               </button>
-            </a>
+            </Link>
           </div>
-          <img src="img/log.svg" className="image" alt="" />
+          <Image
+            src="/img/log.svg" // Adjust the image path if needed
+            alt="Login illustration"
+            className="image"
+            width={500}  // Set desired width
+            height={500} // Set desired height
+          />
         </div>
-
       </div>
 
       <style jsx>{`
-             @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
         .container {
-        margin-top: 100px;
+          margin-top: 100px;
           position: relative;
           width: 100%;
           background-color: #fff;
@@ -433,8 +439,7 @@ const AgentLoginForm = () => {
           opacity: 0;
           z-index: 1;
         }
-
-            `}</style>
+      `}</style>
     </div>
   );
 };

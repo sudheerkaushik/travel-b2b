@@ -29,7 +29,7 @@ const AgentCard = () => {
 
   return (
     <section className="container py-5">
-      {/* {agents.length > 0 ? (
+      {agents.length > 0 ? (
         agents.map((agent) => (
           <div className="row justify-content-center mb-4" key={agent.id}>
             <div className="col-8">
@@ -54,7 +54,7 @@ const AgentCard = () => {
         ))
       ) : (
         <p>Loading...</p>
-      )} */}
+      )}
       <p>hello</p>
     </section>
   );

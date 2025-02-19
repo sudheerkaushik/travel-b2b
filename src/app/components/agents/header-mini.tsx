@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
 const AgentHeaderMini = () => {
   return (

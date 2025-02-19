@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
+import Image from "next/image";
 const TopDestinations = () => {
   return (
     <>
@@ -14,7 +13,7 @@ const TopDestinations = () => {
             <div className="row">
                 <div className="col-lg-4 col-md-6 mb-4">
                     <div className="destination-item position-relative overflow-hidden mb-2">
-                        <img className="img-fluid" src="../img/destination-1.jpg" alt="" />
+                        <Image className="img-fluid" src="../img/destination-1.jpg" alt="" />
                         <a className="destination-overlay text-white text-decoration-none" href="">
                             <h5 className="text-white">United States</h5>
                             <span>100 Cities</span>
@@ -23,7 +22,7 @@ const TopDestinations = () => {
                 </div>
                 <div className="col-lg-4 col-md-6 mb-4">
                     <div className="destination-item position-relative overflow-hidden mb-2">
-                        <img className="img-fluid" src="../img/destination-2.jpg" alt="" />
+                       < Image className="img-fluid" src="../img/destination-2.jpg" alt="" />
                         <a className="destination-overlay text-white text-decoration-none" href="">
                             <h5 className="text-white">United Kingdom</h5>
                             <span>100 Cities</span>
@@ -32,7 +31,7 @@ const TopDestinations = () => {
                 </div>
                 <div className="col-lg-4 col-md-6 mb-4">
                     <div className="destination-item position-relative overflow-hidden mb-2">
-                        <img className="img-fluid" src="../img/destination-3.jpg" alt="" />
+                        <Image className="img-fluid" src="../img/destination-3.jpg" alt="" />
                         <a className="destination-overlay text-white text-decoration-none" href="">
                             <h5 className="text-white">Australia</h5>
                             <span>100 Cities</span>
@@ -41,7 +40,7 @@ const TopDestinations = () => {
                 </div>
                 <div className="col-lg-4 col-md-6 mb-4">
                     <div className="destination-item position-relative overflow-hidden mb-2">
-                        <img className="img-fluid" src="../img/destination-4.jpg" alt="" />
+                        <Image className="img-fluid" src="../img/destination-4.jpg" alt="" />
                         <a className="destination-overlay text-white text-decoration-none" href="">
                             <h5 className="text-white">India</h5>
                             <span>100 Cities</span>
@@ -50,7 +49,7 @@ const TopDestinations = () => {
                 </div>
                 <div className="col-lg-4 col-md-6 mb-4">
                     <div className="destination-item position-relative overflow-hidden mb-2">
-                        <img className="img-fluid" src="../img/destination-5.jpg" alt="" />
+                        <Image className="img-fluid" src="../img/destination-5.jpg" alt="" />
                         <a className="destination-overlay text-white text-decoration-none" href="">
                             <h5 className="text-white">South Africa</h5>
                             <span>100 Cities</span>
@@ -59,7 +58,7 @@ const TopDestinations = () => {
                 </div>
                 <div className="col-lg-4 col-md-6 mb-4">
                     <div className="destination-item position-relative overflow-hidden mb-2">
-                        <img className="img-fluid" src="../img/destination-6.jpg" alt="" />
+                        <Image className="img-fluid" src="../img/destination-6.jpg" alt="" />
                         <a className="destination-overlay text-white text-decoration-none" href="">
                             <h5 className="text-white">Indonesia</h5>
                             <span>100 Cities</span>
