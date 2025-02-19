@@ -334,7 +334,9 @@ export default function TripsManager() {
                   <Form.Control
                     type={field.type}
                     name={field.name}
-                    value={(editingTrip as any)[field.name]}
+                    // value={(editingTrip as any )[field.name]}
+                    value={editingTrip as unknown as keyof Trip}
+
                     onChange={handleChange}
                     required
                   />

@@ -320,7 +320,7 @@
                     <input
                       type={field.type}
                       name={field.name}
-                      value={(formData as any)[field.name]}
+                      value={field.name]}
                       onChange={handleInputChange}
                       required
                       id="floatingInput"
