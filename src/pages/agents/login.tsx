@@ -43,8 +43,8 @@
 // };
 
 // export default AgentLogin;
-import React, { useState } from "react";
-import Alert from "@/app/components/common/alert";
+import React from "react";
+// import Alert from "@/app/components/common/alert";
 import AgentLoginForm from "@/app/components/agents/login";
 
 const AgentLogin = () => {

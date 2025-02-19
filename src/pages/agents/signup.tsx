@@ -1,4 +1,4 @@
-import AgentLoginForm from "@/app/components/agents/login";
+// import AgentLoginForm from "@/app/components/agents/login";
 import AgentSignupForm from "@/app/components/agents/signup";
 import React from "react";
 

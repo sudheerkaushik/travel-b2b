@@ -74,37 +74,72 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       break;
 
+      // case "PUT":
+      //   try {
+      //     let { id, price, margin, date, duration, isAvailable, ...rest } = req.body;
+      //     if (!id) return res.status(400).json({ message: "ID is required to update a trip" });
+      
+      //     // Convert values to the correct types
+      //     price = parseFloat(price);
+      //     margin = parseFloat(margin);
+      //     duration = parseInt(duration);
+      //     isAvailable = Boolean(isAvailable);
+      //     date = new Date(date);
+      
+      //     const updatedTrip = await prisma.trip.update({
+      //       where: { id: Number(id) }, // Ensure id is a number
+      //       data: {
+      //         ...rest,
+      //         price,
+      //         margin,
+      //         duration,
+      //         isAvailable,
+      //         date,
+      //       },
+      //     });
+      
+      //     res.status(200).json({ message: "Trip updated successfully", trip: updatedTrip });
+      //   } catch (error) {
+      //     console.error("Error updating trip:", error);
+      //     res.status(500).json({ message: "Failed to update trip", error });
+      //   }
+      //   break;
+      
       case "PUT":
-        try {
-          let { id, price, margin, date, duration, isAvailable, ...rest } = req.body;
-          if (!id) return res.status(400).json({ message: "ID is required to update a trip" });
-      
-          // Convert values to the correct types
-          price = parseFloat(price);
-          margin = parseFloat(margin);
-          duration = parseInt(duration);
-          isAvailable = Boolean(isAvailable);
-          date = new Date(date);
-      
-          const updatedTrip = await prisma.trip.update({
-            where: { id: Number(id) }, // Ensure id is a number
-            data: {
-              ...rest,
-              price,
-              margin,
-              duration,
-              isAvailable,
-              date,
-            },
-          });
-      
-          res.status(200).json({ message: "Trip updated successfully", trip: updatedTrip });
-        } catch (error) {
-          console.error("Error updating trip:", error);
-          res.status(500).json({ message: "Failed to update trip", error });
-        }
-        break;
-      
+  try {
+    const { id, price, margin, date, duration, isAvailable, ...rest } = req.body;
+    if (!id)
+      return res.status(400).json({ message: "ID is required to update a trip" });
+
+    // Convert values to the correct types and assign to new constants
+    const newPrice = parseFloat(price);
+    const newMargin = parseFloat(margin);
+    const newDuration = parseInt(duration);
+    const newIsAvailable = Boolean(isAvailable);
+    const newDate = new Date(date);
+
+    const updatedTrip = await prisma.trip.update({
+      where: { id: Number(id) }, // Ensure id is a number
+      data: {
+        ...rest,
+        price: newPrice,
+        margin: newMargin,
+        duration: newDuration,
+        isAvailable: newIsAvailable,
+        date: newDate,
+      },
+    });
+
+    res.status(200).json({
+      message: "Trip updated successfully",
+      trip: updatedTrip,
+    });
+  } catch (error) {
+    console.error("Error updating trip:", error);
+    res.status(500).json({ message: "Failed to update trip", error });
+  }
+  break;
+
     case "DELETE":
       try {
         const { id } = req.query;

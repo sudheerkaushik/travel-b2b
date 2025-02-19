@@ -19,6 +19,11 @@
 //     return res.status(401).json({ message: "Unauthorized: Invalid token" });
 //   }
 // }
+
+
+
+
+
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
 
@@ -44,7 +49,7 @@ export function authenticate(
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "defaultsecret");
     req.user = decoded; // Attach user info to the request object
     next();
-  } catch (_error) {
+  } catch {
     return res.status(401).json({ message: "Unauthorized: Invalid token" });
   }
 }

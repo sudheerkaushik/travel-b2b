@@ -208,13 +208,27 @@
 // };
 
 // export default AddTrip;
-import React, { useState, useEffect } from "react";
+
+
+import React, { useState } from "react";
 import Alert from "../../app/components/common/alert";
 import Adminlinks from "@/app/components/admin/links";
 
+type FormDataType = {
+  destination: string;
+  price: string;
+  margin: string;
+  date: string;
+  transport: string;
+  duration: string;
+  description: string;
+  isAvailable: boolean;
+  image: string;
+};
+
 const AddTrip = () => {
-  const [alert, setAlert] = useState<null | { type: string; message: string }>(null);
-  const [formData, setFormData] = useState({
+  const [alert, setAlert] = useState<null | { type: "success" | "error" | "info"; message: string }>(null);
+  const [formData, setFormData] = useState<FormDataType>({
     destination: "",
     price: "",
     margin: "",
@@ -223,7 +237,7 @@ const AddTrip = () => {
     duration: "",
     description: "",
     isAvailable: true,
-    image: "", // To store the image URL
+    image: "",
   });
 
   const closeAlert = () => setAlert(null);
@@ -261,7 +275,7 @@ const AddTrip = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      await tripResponse.json(); // Removed unused variable 'trip'
+      await tripResponse.json();
 
       if (tripResponse.status === 201) {
         setAlert({
@@ -315,13 +329,16 @@ const AddTrip = () => {
                 <input
                   type={field.type}
                   name={field.name}
-                  value={(formData as any)[field.name]}
+                  value={String(formData[field.name as keyof FormDataType])}
                   onChange={handleInputChange}
                   required
                   id="floatingInput"
                   className="form-control border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <label htmlFor="floatingInput" className="ms-3 block text-sm font-medium text-gray-600">
+                <label
+                  htmlFor="floatingInput"
+                  className="ms-3 block text-sm font-medium text-gray-600"
+                >
                   {field.label}
                 </label>
               </div>

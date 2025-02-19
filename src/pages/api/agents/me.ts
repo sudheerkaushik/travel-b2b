@@ -42,7 +42,7 @@
 // }
 
 import { NextApiRequest, NextApiResponse } from "next";
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 import prisma from "../../../lib/prisma"; // Adjust the path
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
