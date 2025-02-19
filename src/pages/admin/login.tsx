@@ -1,93 +1,93 @@
-// import React, { useState } from "react";
-// import { Form, Button, Container } from "react-bootstrap";
-
-// const AgentLogin = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const handleLogin = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     const response = await fetch("/api/agents/login", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ email, password }),
-//     });
-//     const data = await response.json();
-//     if (response.ok) {
-//       alert("Login Successful!");
-//     } else {
-//       alert(data.message);
-//     }
-//   };
-
-//   return (
-//     <Container className="py-5">
-//       <h2>Agent Login</h2>
-//       <Form onSubmit={handleLogin}>
-//         <Form.Group className="mb-3">
-//           <Form.Label>Email</Form.Label>
-//           <Form.Control
-//             type="email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             required
-//           />
-//         </Form.Group>
-//         <Form.Group className="mb-3">
-//           <Form.Label>Password</Form.Label>
-//           <Form.Control
-//             type="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             required
-//           />
-//         </Form.Group>
-//         <Button type="submit">Login</Button>
-//       </Form>
-//     </Container>
-//   );
-// };
-
-// export default AgentLogin;
 import React, { useState } from "react";
-import Alert from "@/app/components/common/alert";
-import AdminLoginForm from "@/app/components/admin/login";
+import { Form, Button, Container } from "react-bootstrap";
 
-const AdminLogin = () => {
+const AgentLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("/api/admin/login", {
+    const response = await fetch("/api/agents/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
     if (response.ok) {
-      window.location.href = "/admin/dashboard";
-      console.log("Login Successful!");
-      setAlertMessage(`Welcome, ${data.name}!`);
+      alert("Login Successful!");
     } else {
-      setAlertMessage(data.message || "Login failed");
+      alert(data.message);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      {alertMessage && (
-        <Alert
-          message={alertMessage}
-          type="success" // Use "error" if needed
-          duration={3000} // Auto-hide after 3 seconds
-          onClose={() => setAlertMessage(null)}
-        />
-      )}
-      <AdminLoginForm />
-    </div>
+    <Container className="py-5">
+      <h2>Agent Login</h2>
+      <Form onSubmit={handleLogin}>
+        <Form.Group className="mb-3">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <Button type="submit">Login</Button>
+      </Form>
+    </Container>
   );
 };
 
-export default AdminLogin;
+export default AgentLogin;
+// import React, { useState } from "react";
+// import Alert from "@/app/components/common/alert";
+// import AdminLoginForm from "@/app/components/admin/login";
+
+// const AdminLogin = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [alertMessage, setAlertMessage] = useState<string | null>(null);
+
+//   const handleLogin = async (e: React.FormEvent) => {
+//     e.preventDefault();
+//     const response = await fetch("/api/admin/login", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ email, password }),
+//     });
+//     const data = await response.json();
+//     if (response.ok) {
+//       window.location.href = "/admin/dashboard";
+//       console.log("Login Successful!");
+//       setAlertMessage(`Welcome, ${data.name}!`);
+//     } else {
+//       setAlertMessage(data.message || "Login failed");
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+//       {alertMessage && (
+//         <Alert
+//           message={alertMessage}
+//           type="success" // Use "error" if needed
+//           duration={3000} // Auto-hide after 3 seconds
+//           onClose={() => setAlertMessage(null)}
+//         />
+//       )}
+//       <AdminLoginForm />
+//     </div>
+//   );
+// };
+
+// export default AdminLogin;

@@ -121,7 +121,7 @@ const AgentLoginForm = () => {
   const { dispatch } = useUser();
   const router = useRouter();
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const response = await fetch("/api/agents/login", {
       method: "POST",

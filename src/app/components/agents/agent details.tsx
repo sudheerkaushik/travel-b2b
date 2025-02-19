@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 const AgentCard = () => {
-  const [agents, setAgents] = useState([]);
+  interface Agent {
+    id: string;
+    agentName: string;
+    role: string;
+    email: string;
+  }
+
+  const [agents, setAgents] = useState<Agent[]>([]);
 
   useEffect(() => {
     const fetchAgentDetails = async () => {
@@ -22,7 +29,7 @@ const AgentCard = () => {
 
   return (
     <section className="container py-5">
-      {agents.length > 0 ? (
+      {/* {agents.length > 0 ? (
         agents.map((agent) => (
           <div className="row justify-content-center mb-4" key={agent.id}>
             <div className="col-8">
@@ -38,7 +45,6 @@ const AgentCard = () => {
                         <p className="mb-0 text-truncate">{agent.email}</p>
                       </div>
 
-                      {/* Add more agent details here */}
                     </div>
                   </div>
                 </div>
@@ -48,7 +54,8 @@ const AgentCard = () => {
         ))
       ) : (
         <p>Loading...</p>
-      )}
+      )} */}
+      <p>hello</p>
     </section>
   );
 };
