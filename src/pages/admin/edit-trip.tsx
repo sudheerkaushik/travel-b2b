@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Image from "next/image";
 import AdminLayout from "../AdminLayout";
+import TripItem from "@/app/components/common/trip-item";
 
 type Trip = {
   id: string;
   destination: string;
-  price: string;
+  price: number;
   margin: string;
   date: string;
   transport: string;
@@ -75,52 +76,16 @@ const TripsManager = () => {
   return (
     <div className="container-fluid row justify-content-center p-0">
       <h1 className="text-center mb-4 mt-5">Manage Trips</h1>
-      <div className="p-0 col-8 ms-5 ">
+      <div className="p-0 col-12 ms-5 ">
         {trips.map((trip) => (
           <div key={trip.id} className="bg-white mb-2 d-flex shadow rounded-3">
-            <div className="position-relative w-25 m-0 p-0 trip-image rounded-start-3">
-              <Image
-                src={trip.imageUrl}
-                alt={trip.destination}
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div className="p-4 w-75">
-              <div className="d-flex justify-content-between mb-3">
-                <small className="m-0">
-                  <i className="fa fa-map-marker-alt text-primary mr-2"></i>
-                  {trip.destination}
-                </small>
-                <small className="m-0">
-                  <i className="fa fa-calendar-alt text-primary mr-2"></i>
-                  {trip.duration} days
-                </small>
-                <small className="m-0">
-                  <i className="fa fa-user text-primary mr-2"></i>2 Person
-                </small>
-              </div>
-              <a className="h5 text-decoration-none trip-description" href="#">
-                {trip.description.length > 100
-                  ? trip.description.substring(0, 100) + "..."
-                  : trip.description}
-              </a>
-              <div className="border-top mt-4 pt-4">
-                <div className="d-flex justify-content-between">
-                  <h6 className="m-0">
-                    <i className="fa fa-star text-primary mr-2"></i>4.5{" "}
-                    <small>(250)</small>
-                  </h6>
-                  <h5 className="m-0">${trip.price}</h5>
-                  <button
-                    className="btn btn-primary col-2 shadow rounded-2"
-                    onClick={() => handleEditClick(trip)}
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </div>
+            <TripItem trip={trip} />
+            <button
+              className="btn btn-primary col-2 shadow rounded-2"
+              onClick={() => handleEditClick(trip)}
+            >
+              Edit
+            </button>
           </div>
         ))}
       </div>

@@ -14,7 +14,9 @@ interface Trip {
 }
 
 const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
-  
+
+  const [trips, setTrips] = useState<Trip[]>([]);
+
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     destination: trip.destination || "",
@@ -33,10 +35,26 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleDelete = async (id: string | number) => {
+    try {
+      const response = await fetch(`/api/trips/trips?id=${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setTrips(trips.filter((trip) => trip.id !== id)); // Remove deleted trip from state
+        console.log("Trip deleted successfully");
+      } else {
+        console.error("Error deleting trip");
+      }
+    } catch (error) {
+      console.error("Error deleting trip:", error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Submitting Form Data:", formData); // Debugging: Log form data before sending
-    
+
     try {
       const enquiryResponse = await fetch("/api/enquiry", {
         method: "POST",
@@ -91,6 +109,12 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
                 <h5 className="m-0">${trip.price}</h5>
                 <button className="btn btn-primary shadow rounded-2" onClick={() => setShowModal(true)}>
                   Book Now
+                </button>
+                <button
+                  onClick={() => handleDelete(trip.id)}
+                  className="btn btn-danger shadow rounded-2 mt-2"
+                >
+                  Delete Trip
                 </button>
               </div>
             </div>
