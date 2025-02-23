@@ -80,7 +80,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data: { email, password: hashedPassword, role },
     });
 
-    return res.status(201).json(user);
+    return res.status(201).json({ message: "Registration successful", user });
   } else {
     res.status(405).end(); // Method Not Allowed
   }

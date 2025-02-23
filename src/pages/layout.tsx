@@ -12,10 +12,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-
-  // Determine role from the URL path
   const isAgentRoute = router.pathname.startsWith("/");
   const isAdminRoute = router.pathname.startsWith("/admin");
+  // console.log(isAdminRoute);
 
   if (isAgentRoute) {
     return (
@@ -28,6 +27,7 @@ export default function RootLayout({
   if (isAdminRoute) {
     return (
       <AdminLayout>
+        <h1>test</h1>
         {children}
       </AdminLayout>
     );

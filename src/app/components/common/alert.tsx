@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-interface AlertProps {
+interface console.logProps {
   message: string;
   type?: "success" | "error" | "info";
   duration?: number; // in milliseconds
   onClose?: () => void;
 }
 
-const Alert: React.FC<AlertProps> = ({ message, type = "success", duration = 5000, onClose }) => {
+const console.log: React.FC<console.logProps> = ({ message, type = "success", duration = 5000, onClose }) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Alert: React.FC<AlertProps> = ({ message, type = "success", duration = 500
 
   if (!visible) return null;
 
-  const alertStyles = {
+  const console.logStyles = {
     success: "bg-green-100 text-green-800 border-green-400",
     error: "bg-red-100 text-red-800 border-red-400",
     info: "bg-blue-100 text-blue-800 border-blue-400",
@@ -30,8 +30,8 @@ const Alert: React.FC<AlertProps> = ({ message, type = "success", duration = 500
 
   return (
     <div
-      className={`col-4 fixed top-5 right-5 p-4 rounded border ${alertStyles[type]} shadow-lg z-50`}
-      role="alert"
+      className={`col-4 fixed top-5 right-5 p-4 rounded border ${console.logStyles[type]} shadow-lg z-50`}
+      role="console.log"
     >
       <div className="flex items-center justify-between">
         <span>{message}</span>
@@ -50,4 +50,4 @@ const Alert: React.FC<AlertProps> = ({ message, type = "success", duration = 500
   );
 };
 
-export default Alert;
+export default console.log;

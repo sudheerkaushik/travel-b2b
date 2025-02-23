@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import TripItem from "../../app/components/common/trip-item";
 import Adminlinks from "@/app/components/admin/links";
+import AdminLayout from "../AdminLayout";
 
 const TripList = () => {
   interface Trip {
@@ -57,10 +58,6 @@ const TripList = () => {
           <h6 className="text-primary text-uppercase" style={{ letterSpacing: '5px' }}>Packages</h6>
           <h1>Perfect Tour Packages</h1>
         </div>
-        <div className="col-12 col-md-3 mb-4 ps-5">
-          {/* <FilterComponent /> */}
-          <Adminlinks/>
-        </div>
         <div className="col-12 col-md-9 ps-5">
           <div className="row">
             {trips.length > 0 ? (
@@ -86,5 +83,7 @@ const TripList = () => {
     </div>
   );
 };
+
+TripList.layout = AdminLayout;
 
 export default TripList;

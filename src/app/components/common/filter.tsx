@@ -122,7 +122,7 @@ const FilterComponent: React.FC = () => {
       </div>
 
       {/* Apply Filters Button */}
-      <Button variant="primary" className="w-75 shadow rounded-2" onClick={() => alert('Filters Applied')}>
+      <Button variant="primary" className="w-75 shadow rounded-2" onClick={() => console.log('Filters Applied')}>
         Apply Filters
       </Button>
     </Container>

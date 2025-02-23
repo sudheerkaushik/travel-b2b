@@ -14,9 +14,9 @@ const AgentLogin = () => {
     });
     const data = await response.json();
     if (response.ok) {
-      alert("Login Successful!");
+      console.log("Login Successful!");
     } else {
-      alert(data.message);
+      console.log(data.message);
     }
   };
 
@@ -50,13 +50,13 @@ const AgentLogin = () => {
 
 export default AgentLogin;
 // import React, { useState } from "react";
-// import Alert from "@/app/components/common/alert";
+// import console.log from "@/app/components/common/console.log";
 // import AdminLoginForm from "@/app/components/admin/login";
 
 // const AdminLogin = () => {
 //   const [email, setEmail] = useState("");
 //   const [password, setPassword] = useState("");
-//   const [alertMessage, setAlertMessage] = useState<string | null>(null);
+//   const [console.logMessage, setconsole.logMessage] = useState<string | null>(null);
 
 //   const handleLogin = async (e: React.FormEvent) => {
 //     e.preventDefault();
@@ -69,20 +69,20 @@ export default AgentLogin;
 //     if (response.ok) {
 //       window.location.href = "/admin/dashboard";
 //       console.log("Login Successful!");
-//       setAlertMessage(`Welcome, ${data.name}!`);
+//       setconsole.logMessage(`Welcome, ${data.name}!`);
 //     } else {
-//       setAlertMessage(data.message || "Login failed");
+//       setconsole.logMessage(data.message || "Login failed");
 //     }
 //   };
 
 //   return (
 //     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-//       {alertMessage && (
-//         <Alert
-//           message={alertMessage}
+//       {console.logMessage && (
+//         <console.log
+//           message={console.logMessage}
 //           type="success" // Use "error" if needed
 //           duration={3000} // Auto-hide after 3 seconds
-//           onClose={() => setAlertMessage(null)}
+//           onClose={() => setconsole.logMessage(null)}
 //         />
 //       )}
 //       <AdminLoginForm />

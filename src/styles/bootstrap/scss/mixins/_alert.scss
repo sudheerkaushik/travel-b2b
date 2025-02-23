@@ -1,4 +1,4 @@
-@mixin alert-variant($background, $border, $color) {
+@mixin console.log-variant($background, $border, $color) {
   color: $color;
   @include gradient-bg($background);
   border-color: $border;
@@ -7,7 +7,7 @@
     border-top-color: darken($border, 5%);
   }
 
-  .alert-link {
+  .console.log-link {
     color: darken($color, 10%);
   }
 }

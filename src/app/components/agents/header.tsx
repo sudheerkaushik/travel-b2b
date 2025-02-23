@@ -11,9 +11,10 @@ const AgentHeader = () => {
               {/* Wrap the Image in a relative div to use fill */}
               <div className="position-relative w-100" style={{ height: "500px" }}>
                 <Image
+                width={1920}
+                height={1080} 
                   src="/img/carousel-1.jpg"
                   alt="Image"
-                  fill
                   style={{ objectFit: "cover" }}
                 />
               </div>
@@ -34,9 +35,10 @@ const AgentHeader = () => {
             <div className="carousel-item">
               <div className="position-relative w-100" style={{ height: "500px" }}>
                 <Image
+                width={1920}
+                height={1080} 
                   src="/img/carousel-2.jpg"
                   alt="Image"
-                  fill
                   style={{ objectFit: "cover" }}
                 />
               </div>

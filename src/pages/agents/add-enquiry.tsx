@@ -1,8 +1,8 @@
 import React from "react";
-    // import Alert from '../../app/components/common/alert';
+    // import console.log from '../../app/components/common/console.log';
 
     const AddEnquiry = () => {
-        // const [alert, setAlert] = useState(null);
+        // const [console.log, setconsole.log] = useState(null);
         // const [formData, setFormData] = useState({
         //     destination: "",
         //     price: "",
@@ -14,7 +14,7 @@ import React from "react";
         //     isAvailable: true,
         // });
 
-        // const closeAlert = () => setAlert(null);
+        // const closeconsole.log = () => setconsole.log(null);
 
         // const handleInputChange = (
         //     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -40,7 +40,7 @@ import React from "react";
         //             console.log(enquiry);
 
         //             if (enquiryResponse.status === 201) {
-        //                 setAlert({
+        //                 setconsole.log({
         //                     type: "success",
         //                     message: "Enquiry added successfully!",
         //                 });
@@ -62,7 +62,7 @@ import React from "react";
         //         }
         //     } catch (error) {
         //         console.error("Error adding enquiry:", error);
-        //         setAlert({
+        //         setconsole.log({
         //             type: "error",
         //             message: "Failed to add enquiry. Please try again.",
         //         });
@@ -72,8 +72,8 @@ import React from "react";
         return (
             <section className="container mx-auto">
                 {/* <div className="row mt-5 justify-center items-center min-h-screen">
-                    {alert && (
-                        <Alert type={alert.type} message={alert.message} onClose={closeAlert} />
+                    {console.log && (
+                        <console.log type={console.log.type} message={console.log.message} onClose={closeconsole.log} />
                     )}
                     <div className="col-3 ms-3">
                         <div id="list-example" className="list-group">
@@ -170,7 +170,6 @@ import React from "react";
                         </form>
                     </div>
                 </div> */}
-           <p>hello</p>
             </section>
         );
     };

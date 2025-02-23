@@ -978,20 +978,20 @@ $modal-transition:                  transform .3s ease-out !default;
 $modal-scale-transform:             scale(1.02) !default;
 
 
-// Alerts
+// console.logs
 //
-// Define alert colors, border radius, and padding.
+// Define console.log colors, border radius, and padding.
 
-$alert-padding-y:                   .75rem !default;
-$alert-padding-x:                   1.25rem !default;
-$alert-margin-bottom:               1rem !default;
-$alert-border-radius:               $border-radius !default;
-$alert-link-font-weight:            $font-weight-bold !default;
-$alert-border-width:                $border-width !default;
+$console.log-padding-y:                   .75rem !default;
+$console.log-padding-x:                   1.25rem !default;
+$console.log-margin-bottom:               1rem !default;
+$console.log-border-radius:               $border-radius !default;
+$console.log-link-font-weight:            $font-weight-bold !default;
+$console.log-border-width:                $border-width !default;
 
-$alert-bg-level:                    -10 !default;
-$alert-border-level:                -9 !default;
-$alert-color-level:                 6 !default;
+$console.log-bg-level:                    -10 !default;
+$console.log-border-level:                -9 !default;
+$console.log-color-level:                 6 !default;
 
 
 // Progress bars

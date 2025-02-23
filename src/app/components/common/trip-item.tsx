@@ -49,12 +49,12 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
       console.log("Response Status:", data); // Debug response status
 
       if (enquiryResponse.status === 201) {
-        alert("Enquiry submitted successfully!");
+        console.log("Enquiry submitted successfully!");
         setShowModal(false);
       } else {
         const errorData = await enquiryResponse.json();
         console.error("Server Error:", errorData); // Log error response
-        alert(`Failed to submit enquiry: ${errorData.message}`);
+        console.log(`Failed to submit enquiry: ${errorData.message}`);
       }
     } catch (error) {
       console.error("Error submitting enquiry:", error);
@@ -65,7 +65,7 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
     <>
       {trip && (
         <div className="package-item bg-white mb-2 d-flex shadow rounded-3">
-          <Image className="img-fluid w-25 trip-image rounded-start-3" src={trip.imageUrl} alt="" />
+          <Image width={500} height={500} className="img-fluid w-25 trip-image rounded-start-3" src={trip.imageUrl} alt="" />
           <div className="p-4 w-75">
             <div className="d-flex justify-content-between mb-3">
               <small className="m-0">
@@ -104,17 +104,15 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
           <Modal.Title>Enquiry Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
+          <Form className="row" onSubmit={handleSubmit}>
             {/* Read-Only Trip Details */}
             {[
               { label: "Destination", name: "destination", type: "text", readOnly: true },
               { label: "Price", name: "price", type: "number", readOnly: true },
-              { label: "Margin", name: "margin", type: "number", readOnly: true },
-              { label: "Date", name: "date", type: "date", readOnly: true },
               { label: "Duration", name: "duration", type: "number", readOnly: true },
               { label: "Transport", name: "transport", type: "text", readOnly: true },
             ].map((field) => (
-              <Form.Group className="mb-3" key={field.name}>
+              <Form.Group className="mb-3 col-6" key={field.name}>
                 <Form.Label>{field.label}</Form.Label>
                 <Form.Control
                   type={field.type}
@@ -126,7 +124,7 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
             ))}
 
             {/* Editable Fields for Agent */}
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 col-6">
               <Form.Label>Agent Name</Form.Label>
               <Form.Control
                 type="text"
@@ -135,8 +133,26 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
                 onChange={handleChange}
               />
             </Form.Group>
+            <Form.Group className="mb-3 col-6">
+              <Form.Label>Date</Form.Label>
+              <Form.Control
+                type="text"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 col-6">
+              <Form.Label>Margin</Form.Label>
+              <Form.Control
+                type="text"
+                name="Margin"
+                value={formData.margin}
+                onChange={handleChange}
+              />
+            </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 col-6">
               <Form.Label>Contact Number</Form.Label>
               <Form.Control
                 type="text"
@@ -146,7 +162,7 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 col-6">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -156,7 +172,7 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => {
               />
             </Form.Group>
 
-            <Button variant="success" type="submit">
+            <Button variant="success" className="col-6 offset-3 btn btn-lg mt-4" type="submit">
               Submit Enquiry
             </Button>
           </Form>

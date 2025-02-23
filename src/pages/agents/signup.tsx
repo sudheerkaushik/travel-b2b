@@ -9,33 +9,16 @@ const SignupPage = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-
-    if (response.ok) {
-      alert("Signup successful!");
+const responseBody = await response.json();
+    if (responseBody.ok) {
+      console.log("Signup successful!");
     } else {
-      alert("Signup failed.");
+      console.log("Signup failed.");
     }
   };
 
   return <AgentSignupForm onSubmit={handleSignup} />;
 };
 
-// const LoginPage = () => {
-//   const handleLogin = async (data: { email: string; password: string }) => {
-//     const response = await fetch("/api/agents/login", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(data),
-//     });
-
-//     if (response.ok) {
-//       alert("Login successful!");
-//     } else {
-//       alert("Login failed.");
-//     }
-//   };
-
-//   return <AgentLoginForm onSubmit={handleLogin} />;
-// };
 
 export default SignupPage;
